@@ -1,0 +1,17 @@
+rules:
+  - name: not-equal-error-rate
+    tenant: payments
+    query: http_5xx_rate
+    expression: "http_5xx_rate != 0"
+  - name: regex-canary-version
+    tenant: payments
+    query: deployed_version
+    expression: "deployed_version =~ ^v2\\."
+  - name: not-regex-stable-host
+    tenant: payments
+    query: node_pool
+    expression: "node_pool !~ ^spot-"
+  - name: greater-queue-depth
+    tenant: payments
+    query: queue_depth
+    expression: "queue_depth > 100"

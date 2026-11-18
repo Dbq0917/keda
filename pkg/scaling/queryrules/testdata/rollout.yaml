@@ -1,0 +1,10 @@
+# Tenant-scoped rollout of the strict v2 expression parser.
+# Tenants listed here get correct != / =~ / !~ handling; every other
+# tenant keeps the legacy v1 behaviour, so existing rule files do not
+# need to change.
+v2Tenants:
+  - payments
+
+# Set v2All: true only after every tenant has been verified; it switches
+# every rule to the strict parser regardless of v2Tenants.
+v2All: false
